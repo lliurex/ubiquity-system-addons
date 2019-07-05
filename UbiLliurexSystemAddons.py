@@ -158,6 +158,7 @@ class PageKde(plugin.PluginUI):
         checkBox.setObjectName("checkBox")
         checkBox.setChecked(self.configuration[action])
         checkBox.clicked.connect(lambda: self.modify_value(action,checkBox))
+        return checkBox
 
     def add_line(self):
         from PyQt5.QtWidgets import QVBoxLayout, QWidget, QSizePolicy
