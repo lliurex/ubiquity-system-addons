@@ -24,7 +24,6 @@ class PageKde(plugin.PluginUI):
         from PyQt5.QtWidgets import QWidget, QFrame, QVBoxLayout, QScrollArea, QGridLayout, QHBoxLayout, QLabel, QSizePolicy, QRadioButton
         from PyQt5.QtCore import Qt
         self.configuration = {'flash':True,'statistics':True}
-        self.modify_value("default")
         self.controller = controller
         self.main_widget = QFrame()
         self.translations = {"flashname":"Flash support", "flashdescription": "Install Flash package", "statisticsname" : "Statistics usage","statisticsdescription" : "Send anonymous statistics usage to improve LliureX"}
