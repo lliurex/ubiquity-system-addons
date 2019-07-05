@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.1.1) bionic; urgency=medium
+
+  * fix minor bugs
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 05 Jul 2019 14:20:26 +0200
+
 ubiquity-system-addons (0.1) unstable; urgency=medium
 
   * Initial Release.
