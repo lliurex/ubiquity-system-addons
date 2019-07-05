@@ -1,3 +1,10 @@
+ubiquity-system-addons (0.1.2) bionic; urgency=medium
+
+  * Return checkbox when create it
+  * Remove function copy from other project
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 05 Jul 2019 14:29:27 +0200
+
 ubiquity-system-addons (0.1.1) bionic; urgency=medium
 
   * fix minor bugs
