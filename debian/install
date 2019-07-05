@@ -1,2 +1,2 @@
-UbiLliurexSystemAddons.py
-images	/usr/share/ubiquity-system-addons
+UbiLliurexSystemAddons.py /usr/lib/ubiquity/plugins/
+images/*	/usr/share/ubiquity-system-addons
