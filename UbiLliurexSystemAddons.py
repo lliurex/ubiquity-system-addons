@@ -26,8 +26,9 @@ class PageKde(plugin.PluginUI):
         self.configuration = {'flash':True,'statistics':True}
         self.modify_value("default")
         self.controller = controller
-        self.translations = {"defaultlayout":"Default layout", "defaultlayoutdescription": "LliureX show two bars", "classiclayout" : "Classic layout","classiclayoutdescription" : "LliureX show one bar"}
         self.main_widget = QFrame()
+        self.translations = {"flashname":"Flash support", "flashdescription": "Install Flash package", "statisticsname" : "Statistics usage","statisticsdescription" : "Send anonymous statistics usage to improve LliureX"}
+
         self.main_widget.setLayout(QVBoxLayout())
         qsa = QScrollArea()
         widget = QWidget()
@@ -176,7 +177,7 @@ class PageKde(plugin.PluginUI):
     def modify_value(self, action, checkbox):
         self.configuration[action] = checkbox.isChecked()
 
-class Page(plugin.Page):
+class Page(plugin.Plugin):
 
     @misc.raise_privileges
     def ok_handler(self):
