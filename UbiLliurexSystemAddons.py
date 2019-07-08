@@ -7,7 +7,7 @@ import gettext
 
 
 NAME = 'lliurexDesktopLayout'
-AFTER = 'console_setup'
+AFTER = 'lliurexExtrapackages'
 BEFORE = 'usersetup'
 WEIGHT = 40
 
@@ -187,6 +187,18 @@ class Page(plugin.Plugin):
             for x in self.ui.configuration:
                 if self.ui.configuration[x]:
                     fd.write(x)
+        if self.ui.configuration['flash']:
+            with open('/var/lib/ubiquity/lliurex-extra-packages','a') as fd:
+                fd.write('adobe-flashplugin\n')
+            self.preseed_bool('apt-setup/partner', True)
+        else:
+            with open('/var/lib/ubiquity/lliurex-extra-packages','r') as fd:
+                lines = fd.readlines()
+            with open('/var/lib/ubiquity/lliurex-extra-packages','w') as fd:
+                for line in lines:
+                    if line != 'adobe-flashplugin\n':
+                        fd.write(line)
+
         plugin.Plugin.ok_handler(self)
 
 
@@ -199,7 +211,14 @@ class Install(plugin.InstallPlugin):
             actions.append(fd.readline().strip())
         
         if 'flash' in actions:
-            os.system('chroot {target} epic -u install /usr/share/zero-lliurex-flash/flash.epi'.format(target=target))
+            if os.path.exits('{}/usr/lib/adobe-flashplugin/libflashplayer.so'.format(target)):
+                with open('{}/etc/apt/sources.list.d/canonical.list'.format(target),'w') as fd:
+                    fd.write('# AUTOMATICALLY ADDED BY LLIUREX DURING INSTALLATION')
+                    fd.write('deb http://archive.canonical.com/ubuntu bionic partner')
+                with open('{}/etc/n4d/one-shot/set-flash-configured'.format(target),'w') as fd:
+                    fd.write('#!/bin/bash\n')
+                    fd.write('zero-center set-configured lliurex-flash-installer')
+                os.system('chmod +x {}/etc/n4d/one-shot/set-flash-configured'.format(target))
         
         analytics_path = "{rootmountpoint}/etc/lliurex-analytics/".format(rootmountpoint=target)
         os.system("mkdir -p {ap}".format(ap=analytics_path))
