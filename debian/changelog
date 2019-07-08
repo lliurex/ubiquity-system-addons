@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.2) bionic; urgency=medium
+
+  * Install flash plugin from partner inside epic
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 08 Jul 2019 14:44:51 +0200
+
 ubiquity-system-addons (0.1.2) bionic; urgency=medium
 
   * Return checkbox when create it
