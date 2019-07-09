@@ -211,7 +211,7 @@ class Install(plugin.InstallPlugin):
             actions.append(fd.readline().strip())
         
         if 'flash' in actions:
-            if os.path.exits('{}/usr/lib/adobe-flashplugin/libflashplayer.so'.format(target)):
+            if os.path.exists('{}/usr/lib/adobe-flashplugin/libflashplayer.so'.format(target)):
                 with open('{}/etc/apt/sources.list.d/canonical.list'.format(target),'w') as fd:
                     fd.write('# AUTOMATICALLY ADDED BY LLIUREX DURING INSTALLATION')
                     fd.write('deb http://archive.canonical.com/ubuntu bionic partner')
