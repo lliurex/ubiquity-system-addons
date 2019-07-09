@@ -16,6 +16,7 @@ gettext.textdomain('ubilliurexdesktoplayout')
 _ = gettext.gettext
 
 class PageKde(plugin.PluginUI):
+    plugin_title = 'ubiquity/text/prepare_heading_label'
     plugin_breadcrumb = 'ubiquity/text/breadcrumb_systemAddons'
     
     def __init__(self, controller, *args, **kwargs):
