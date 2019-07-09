@@ -11,5 +11,5 @@ Homepage: http://www.lliurex.net
 Package: ubiquity-system-addons
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: Ubiquity addon to install flash and manage statistics
+ Lliurex ubiquity plugin 
