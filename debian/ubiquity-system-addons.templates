@@ -1,4 +1,6 @@
-Template: lliurex/systemAddons
+Template: lliurex/breadcrumb_systemAddons
 Type: text
-_Description: System Addons
-
+Description: System Addons
+Description-ca@valencia.UTF-8: Afegits del sistema
+Description-ca_ES@valencia.UTF-8: Afegits del sistema
+Description-es.UTF-8: Añadidos del sistema
