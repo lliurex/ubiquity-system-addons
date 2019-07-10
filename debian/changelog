@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.2.4) bionic; urgency=medium
+
+  * Change plugin prefix to lliurex/text
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Wed, 10 Jul 2019 12:22:29 +0200
+
 ubiquity-system-addons (0.2.3) bionic; urgency=medium
 
   * Test translations
