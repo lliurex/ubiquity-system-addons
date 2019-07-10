@@ -12,7 +12,7 @@ BEFORE = 'usersetup'
 WEIGHT = 40
 
 
-gettext.textdomain('ubilliurexdesktoplayout')
+gettext.textdomain('ubilliurexsystemaddons')
 _ = gettext.gettext
 
 class PageKde(plugin.PluginUI):
