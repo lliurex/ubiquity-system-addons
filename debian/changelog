@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.2.3) bionic; urgency=medium
+
+  * Test translations
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Wed, 10 Jul 2019 09:53:36 +0200
+
 ubiquity-system-addons (0.2.2) bionic; urgency=medium
 
   * Add templates with translations
