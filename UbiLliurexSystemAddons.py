@@ -6,7 +6,7 @@ import inspect
 import gettext
 
 
-NAME = 'lliurexDesktopLayout'
+NAME = 'lliurexSystemAddons'
 AFTER = 'lliurexExtrapackages'
 BEFORE = 'usersetup'
 WEIGHT = 40
