@@ -2,7 +2,7 @@ Source: ubiquity-system-addons
 Section: admin
 Priority: optional
 Maintainer: Raul Rodrigo Segura <raurodse@gmail.com>
-Build-Depends: debhelper (>= 10), po-debconf
+Build-Depends: debhelper (>= 10), po-debconf, python3-poinstaller
 Standards-Version: 4.1.2
 Homepage: http://www.lliurex.net
 #Vcs-Git: https://anonscm.debian.org/git/collab-maint/ubiquity-system-addons.git
