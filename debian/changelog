@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.3) bionic; urgency=medium
+
+  * Add translations
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 16 Jul 2019 14:58:59 +0200
+
 ubiquity-system-addons (0.2.5) bionic; urgency=medium
 
   * Fix plugin name
