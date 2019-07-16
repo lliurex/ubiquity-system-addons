@@ -45,6 +45,11 @@ class PageKde(plugin.PluginUI):
         self.page = widget
         self.plugin_widgets = self.page
 
+    def get_translations(self):
+        _("Flash support")
+        _("Install Flash package")
+        _("Statistics usage")
+        _("Send anonymous statistics usage to improve LliureX")
 
     def createFlash(self,last):
         from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QVBoxLayout
@@ -177,6 +182,14 @@ class PageKde(plugin.PluginUI):
     
     def modify_value(self, action, checkbox):
         self.configuration[action] = checkbox.isChecked()
+
+    def plugin_translate(self, lang):
+        langtoinstall = gettext.translation('ubilliurexsystemaddons',languages=[lang])
+        langtoinstall.install()
+        self.flash_name_package.setText(_(self.translations['flashname']))
+        self.flash_description_package.setText(_(self.translations['flashdescription']))
+        self.statistics_name_package.setText(_(self.translations['statisticsname']))
+        self.statistics_description_package.setText(_(self.translations['statisticsdescription']))
 
 class Page(plugin.Plugin):
 
