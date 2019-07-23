@@ -19,16 +19,16 @@ msgstr ""
 
 #: UbiLliurexSystemAddons.py:49
 msgid "Flash support"
-msgstr ""
+msgstr "Suport de Flash"
 
 #: UbiLliurexSystemAddons.py:50
 msgid "Install Flash package"
-msgstr ""
+msgstr "Instal·la el paquet Flash"
 
 #: UbiLliurexSystemAddons.py:51
 msgid "Statistics usage"
-msgstr ""
+msgstr "Ús d’estadístiques"
 
 #: UbiLliurexSystemAddons.py:52
 msgid "Send anonymous statistics usage to improve LliureX"
-msgstr ""
+msgstr "Envieu les estadístiques d’ús anònimament per a millorar LliureX"
