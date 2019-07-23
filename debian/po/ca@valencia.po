@@ -21,4 +21,4 @@ msgstr ""
 #. description
 #: ../ubiquity-system-addons.templates:1001
 msgid "System Addons"
-msgstr "Extres del sistema"
+msgstr "Complements del sistema"
