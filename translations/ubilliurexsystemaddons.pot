@@ -32,3 +32,11 @@ msgstr ""
 #: UbiLliurexSystemAddons.py:52
 msgid "Send anonymous statistics usage to improve LliureX"
 msgstr ""
+
+#: UbiLliurexSystemAddons.py:53
+msgid "Inventory Service"
+msgstr ""
+
+#: UbiLliurexSystemAddons.py:54
+msgid "Service to collect hardware information"
+msgstr ""

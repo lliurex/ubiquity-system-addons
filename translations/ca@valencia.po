@@ -32,3 +32,11 @@ msgstr "Ús d’estadístiques"
 #: UbiLliurexSystemAddons.py:52
 msgid "Send anonymous statistics usage to improve LliureX"
 msgstr "Envieu les estadístiques d’ús anònimament per a millorar LliureX"
+
+#: UbiLliurexSystemAddons.py:53
+msgid "Inventory Service"
+msgstr "Servei d'Inventariat"
+
+#: UbiLliurexSystemAddons.py:54
+msgid "Service to collect hardware information"
+msgstr "Servei per a recollir informació del maquinari"
