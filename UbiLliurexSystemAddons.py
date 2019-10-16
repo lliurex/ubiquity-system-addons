@@ -24,10 +24,10 @@ class PageKde(plugin.PluginUI):
         from PyQt5.QtGui import QPixmap, QIcon, QFont
         from PyQt5.QtWidgets import QWidget, QFrame, QVBoxLayout, QScrollArea, QGridLayout, QHBoxLayout, QLabel, QSizePolicy, QRadioButton
         from PyQt5.QtCore import Qt
-        self.configuration = {'flash':True,'statistics':True}
+        self.configuration = {'flash':True,'statistics':True,'inventory':False}
         self.controller = controller
         self.main_widget = QFrame()
-        self.translations = {"flashname":"Flash support", "flashdescription": "Install Flash package", "statisticsname" : "Statistics usage","statisticsdescription" : "Send anonymous statistics usage to improve LliureX"}
+        self.translations = {"flashname":"Flash support", "flashdescription": "Install Flash package", "statisticsname" : "Statistics usage","statisticsdescription" : "Send anonymous statistics usage to improve LliureX", "inventoryname": "Inventory Service", "inventorydescription": "Service to collect hardware information"}
 
         self.main_widget.setLayout(QVBoxLayout())
         qsa = QScrollArea()
@@ -40,7 +40,8 @@ class PageKde(plugin.PluginUI):
         self.main_widget.layout().addWidget(qsa)
 
         widget.layout().addLayout(self.createFlash(False),False)
-        widget.layout().addLayout(self.createStatistics(True),True)
+        widget.layout().addLayout(self.createStatistics(False),True)
+        widget.layout().addLayout(self.createInventory(True),True)
 
         self.page = widget
         self.plugin_widgets = self.page
@@ -50,6 +51,8 @@ class PageKde(plugin.PluginUI):
         _("Install Flash package")
         _("Statistics usage")
         _("Send anonymous statistics usage to improve LliureX")
+        _("Inventory service")
+        _("Service to collect hardware information")
 
     def createFlash(self,last):
         from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QVBoxLayout
@@ -75,7 +78,8 @@ class PageKde(plugin.PluginUI):
 
         gLayout.addWidget(image_package,0,0)
         gLayout.addLayout(horizontalLayout,0,1)
-        gLayout.addLayout(self.add_line(),1,1)
+        if not last:
+            gLayout.addLayout(self.add_line(),1,1)
         return gLayout
 
     def createStatistics(self,last):
@@ -103,7 +107,40 @@ class PageKde(plugin.PluginUI):
 
         gLayout.addWidget(image_package,0,0)
         gLayout.addLayout(horizontalLayout,0,1)
+        if not last:
+            gLayout.addLayout(self.add_line(),1,1)
         return gLayout
+    
+    def createInventory(self,last):
+
+        from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QVBoxLayout
+        from PyQt5.QtCore import Qt
+
+        gLayout = QGridLayout()
+        horizontalLayout = QHBoxLayout()
+        horizontalLayout.setObjectName("horizontalLayout")
+        verticalLayout = QVBoxLayout()
+        verticalLayout.setObjectName("verticalLayout")
+        verticalLayout.setAlignment(Qt.AlignLeft | Qt.AlignTop)
+        verticalLayout.setContentsMargins(10,20,0,0)
+        horizontalLayout.addLayout(verticalLayout)
+        
+        image_package = self.createImage(os.path.join('/usr/share/ubiquity-system-addons','statistics.svg'))
+        self.inventory_name_package = self.createName(_(self.translations['inventoryname']))
+        self.inventory_description_package = self.createDescription(_(self.translations['inventorydescription']))
+        install_package = self.createCheck('inventory')
+
+        verticalLayout.addWidget(self.inventory_name_package)
+        verticalLayout.addWidget(self.inventory_description_package)
+        horizontalLayout.addWidget(install_package)
+
+        gLayout.addWidget(image_package,0,0)
+        gLayout.addLayout(horizontalLayout,0,1)
+        if not last:
+            gLayout.addLayout(self.add_line(),1,1)
+        return gLayout
+
+
 
     def createImage(self,path_image):
         from PyQt5.QtWidgets import QLabel, QSizePolicy
@@ -211,6 +248,17 @@ class Page(plugin.Plugin):
             with open('/var/lib/ubiquity/lliurex-extra-packages','w') as fd:
                 for line in lines:
                     if line != 'adobe-flashplugin\n':
+                        fd.write(line)
+
+        if self.ui.configuration['inventory']:
+            with open('/var/lib/ubiquity/lliurex-extra-packages','a') as fd:
+                fd.write('fusioninstall\n')
+        else:
+            with open('/var/lib/ubiquity/lliurex-extra-packages','r') as fd:
+                lines = fd.readlines()
+            with open('/var/lib/ubiquity/lliurex-extra-packages','w') as fd:
+                for line in lines:
+                    if line != 'fusioninstall\n':
                         fd.write(line)
 
         plugin.Plugin.ok_handler(self)
