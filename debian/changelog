@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.3.6) bionic; urgency=medium
+
+  * Updated icons
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 16 Oct 2019 13:27:48 +0200
+
 ubiquity-system-addons (0.3.5) bionic; urgency=medium
 
   * Fixed install functions for both flash and inventory steps
