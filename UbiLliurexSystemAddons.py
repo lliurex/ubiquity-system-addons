@@ -279,8 +279,14 @@ class Install(plugin.InstallPlugin):
                     fd.write('deb http://archive.canonical.com/ubuntu bionic partner')
                 with open('{}/etc/n4d/one-shot/set-flash-configured'.format(target),'w') as fd:
                     fd.write('#!/bin/bash\n')
-                    fd.write('zero-center set-configured lliurex-flash-installer')
+                    fd.write('zero-center set-configured zero-lliurex-flash')
                 os.system('chmod +x {}/etc/n4d/one-shot/set-flash-configured'.format(target))
+
+        if 'inventory' in actions:
+                with open('{}/etc/n4d/one-shot/set-fusion-configured'.format(target),'w') as fd:
+                    fd.write('#!/bin/bash\n')
+                    fd.write('zero-center set-configured zero-lliurex-inventory')
+                os.system('chmod +x {}/etc/n4d/one-shot/set-fusion-configured'.format(target))
         
         analytics_path = "{rootmountpoint}/etc/lliurex-analytics/".format(rootmountpoint=target)
         os.system("mkdir -p {ap}".format(ap=analytics_path))
