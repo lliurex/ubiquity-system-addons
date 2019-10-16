@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.3.3) bionic; urgency=medium
+
+  * Added fusioninstall support
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 16 Oct 2019 12:23:34 +0200
+
 ubiquity-system-addons (0.3.2) bionic; urgency=medium
 
   * Fix valencian translations
