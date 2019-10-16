@@ -125,7 +125,7 @@ class PageKde(plugin.PluginUI):
         verticalLayout.setContentsMargins(10,20,0,0)
         horizontalLayout.addLayout(verticalLayout)
         
-        image_package = self.createImage(os.path.join('/usr/share/ubiquity-system-addons','statistics.svg'))
+        image_package = self.createImage(os.path.join('/usr/share/ubiquity-system-addons','inventory.svg'))
         self.inventory_name_package = self.createName(_(self.translations['inventoryname']))
         self.inventory_description_package = self.createDescription(_(self.translations['inventorydescription']))
         install_package = self.createCheck('inventory')
