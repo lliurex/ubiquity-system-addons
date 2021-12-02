@@ -1,3 +1,10 @@
+ubiquity-system-addons (0.3.7) bionic; urgency=medium
+
+  * Remove statistics from installer
+  * Add anydesksai to install
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 02 Dec 2021 14:30:23 +0100
+
 ubiquity-system-addons (0.3.6) bionic; urgency=medium
 
   * Updated icons
