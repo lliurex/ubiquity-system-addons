@@ -24,10 +24,10 @@ class PageKde(plugin.PluginUI):
         from PyQt5.QtGui import QPixmap, QIcon, QFont
         from PyQt5.QtWidgets import QWidget, QFrame, QVBoxLayout, QScrollArea, QGridLayout, QHBoxLayout, QLabel, QSizePolicy, QRadioButton
         from PyQt5.QtCore import Qt
-        self.configuration = {'flash':True,'statistics':True,'inventory':False}
+        self.configuration = {'anydesk':False,'inventory':False}
         self.controller = controller
         self.main_widget = QFrame()
-        self.translations = {"flashname":"Flash support", "flashdescription": "Install Flash package", "statisticsname" : "Statistics usage","statisticsdescription" : "Send anonymous statistics usage to improve LliureX", "inventoryname": "Inventory Service", "inventorydescription": "Service to collect hardware information"}
+        self.translations = {"anydeskname" : "Anydesk for SAI","anydeskdescription" : "AnyDesk to SAI from Comunidad Valenciana", "inventoryname": "Inventory Service", "inventorydescription": "Service to collect hardware information"}
 
         self.main_widget.setLayout(QVBoxLayout())
         qsa = QScrollArea()
@@ -39,50 +39,19 @@ class PageKde(plugin.PluginUI):
 
         self.main_widget.layout().addWidget(qsa)
 
-        widget.layout().addLayout(self.createFlash(False),False)
-        widget.layout().addLayout(self.createStatistics(False),True)
+        widget.layout().addLayout(self.createAnyDesk(False),True)
         widget.layout().addLayout(self.createInventory(True),True)
 
         self.page = widget
         self.plugin_widgets = self.page
 
     def get_translations(self):
-        _("Flash support")
-        _("Install Flash package")
-        _("Statistics usage")
-        _("Send anonymous statistics usage to improve LliureX")
+        _("Anydesk for SAI")
+        _("AnyDesk to SAI from Comunidad Valenciana")
         _("Inventory service")
         _("Service to collect hardware information")
 
-    def createFlash(self,last):
-        from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QVBoxLayout
-        from PyQt5.QtCore import Qt
-
-        gLayout = QGridLayout()
-        horizontalLayout = QHBoxLayout()
-        horizontalLayout.setObjectName("horizontalLayout")
-        verticalLayout = QVBoxLayout()
-        verticalLayout.setObjectName("verticalLayout")
-        horizontalLayout.addLayout(verticalLayout)
-
-        image_package = self.createImage(os.path.join('/usr/share/ubiquity-system-addons','flash.svg'))
-        self.flash_name_package = self.createName(_(self.translations['flashname']))
-        self.flash_description_package = self.createDescription(_(self.translations['flashdescription']))
-        install_package = self.createCheck('flash')
-
-        verticalLayout.addWidget(self.flash_name_package)
-        verticalLayout.addWidget(self.flash_description_package)
-        verticalLayout.setAlignment(Qt.AlignLeft | Qt.AlignTop)
-        verticalLayout.setContentsMargins(10,20,0,0)
-        horizontalLayout.addWidget(install_package)
-
-        gLayout.addWidget(image_package,0,0)
-        gLayout.addLayout(horizontalLayout,0,1)
-        if not last:
-            gLayout.addLayout(self.add_line(),1,1)
-        return gLayout
-
-    def createStatistics(self,last):
+    def createAnyDesk(self,last):
 
         from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QVBoxLayout
         from PyQt5.QtCore import Qt
@@ -96,13 +65,13 @@ class PageKde(plugin.PluginUI):
         verticalLayout.setContentsMargins(10,20,0,0)
         horizontalLayout.addLayout(verticalLayout)
         
-        image_package = self.createImage(os.path.join('/usr/share/ubiquity-system-addons','statistics.svg'))
-        self.statistics_name_package = self.createName(_(self.translations['statisticsname']))
-        self.statistics_description_package = self.createDescription(_(self.translations['statisticsdescription']))
-        install_package = self.createCheck('statistics')
+        image_package = self.createImage(os.path.join('/usr/share/ubiquity-system-addons','anydesk.svg'))
+        self.anydesk_name_package = self.createName(_(self.translations['anydeskname']))
+        self.anydesk_description_package = self.createDescription(_(self.translations['anydeskdescription']))
+        install_package = self.createCheck('anydesksai')
 
-        verticalLayout.addWidget(self.statistics_name_package)
-        verticalLayout.addWidget(self.statistics_description_package)
+        verticalLayout.addWidget(self.anydesk_name_package)
+        verticalLayout.addWidget(self.anydesk_description_package)
         horizontalLayout.addWidget(install_package)
 
         gLayout.addWidget(image_package,0,0)
@@ -223,10 +192,8 @@ class PageKde(plugin.PluginUI):
     def plugin_translate(self, lang):
         langtoinstall = gettext.translation('ubilliurexsystemaddons',languages=[lang])
         langtoinstall.install()
-        self.flash_name_package.setText(_(self.translations['flashname']))
-        self.flash_description_package.setText(_(self.translations['flashdescription']))
-        self.statistics_name_package.setText(_(self.translations['statisticsname']))
-        self.statistics_description_package.setText(_(self.translations['statisticsdescription']))
+        self.anydesk_name_package.setText(_(self.translations['anydeskname']))
+        self.anydesk_description_package.setText(_(self.translations['anydeskdescription']))
 
 class Page(plugin.Plugin):
 
@@ -238,18 +205,6 @@ class Page(plugin.Plugin):
             for x in self.ui.configuration:
                 if self.ui.configuration[x]:
                     fd.write(x)
-        if self.ui.configuration['flash']:
-            with open('/var/lib/ubiquity/lliurex-extra-packages','a') as fd:
-                fd.write('adobe-flashplugin\n')
-            self.preseed_bool('apt-setup/partner', True)
-        else:
-            with open('/var/lib/ubiquity/lliurex-extra-packages','r') as fd:
-                lines = fd.readlines()
-            with open('/var/lib/ubiquity/lliurex-extra-packages','w') as fd:
-                for line in lines:
-                    if line != 'adobe-flashplugin\n':
-                        fd.write(line)
-
         if self.ui.configuration['inventory']:
             with open('/var/lib/ubiquity/lliurex-extra-packages','a') as fd:
                 fd.write('fusioninstall\n')
@@ -260,6 +215,19 @@ class Page(plugin.Plugin):
                 for line in lines:
                     if line != 'fusioninstall\n':
                         fd.write(line)
+        if self.ui.configuration['anydesksai']:
+            with open('/var/lib/ubiquity/lliurex-extra-packages','a') as fd:
+                fd.write('anydesksai\n')
+        else:
+            with open('/var/lib/ubiquity/lliurex-extra-packages','r') as fd:
+                lines = fd.readlines()
+            with open('/var/lib/ubiquity/lliurex-extra-packages','w') as fd:
+                for line in lines:
+                    if line != 'anydesksai\n':
+                        fd.write(line)
+
+
+
 
         plugin.Plugin.ok_handler(self)
 
@@ -272,29 +240,21 @@ class Install(plugin.InstallPlugin):
         with open('/var/lib/ubiquity/ubilliurexsystemaddons') as fd:
             actions.append(fd.readline().strip())
         
-        if 'flash' in actions:
-            if os.path.exists('{}/usr/lib/adobe-flashplugin/libflashplayer.so'.format(target)):
-                with open('{}/etc/apt/sources.list.d/canonical.list'.format(target),'w') as fd:
-                    fd.write('# AUTOMATICALLY ADDED BY LLIUREX DURING INSTALLATION')
-                    fd.write('deb http://archive.canonical.com/ubuntu bionic partner')
-                with open('{}/etc/n4d/one-shot/set-flash-configured'.format(target),'w') as fd:
-                    fd.write('#!/bin/bash\n')
-                    fd.write('zero-center set-configured zero-lliurex-flash')
-                os.system('chmod +x {}/etc/n4d/one-shot/set-flash-configured'.format(target))
-
         if 'inventory' in actions:
                 with open('{}/etc/n4d/one-shot/set-fusion-configured'.format(target),'w') as fd:
                     fd.write('#!/bin/bash\n')
                     fd.write('zero-center set-configured zero-lliurex-inventory')
                 os.system('chmod +x {}/etc/n4d/one-shot/set-fusion-configured'.format(target))
         
+        if 'anydesksai' in actions:
+                with open('{}/etc/n4d/one-shot/set-anydesk-configured'.format(target),'w') as fd:
+                    fd.write('#!/bin/bash\n')
+                    fd.write('zero-center set-configured zero-lliurex-anydesk')
+                os.system('chmod +x {}/etc/n4d/one-shot/set-anydesk-configured'.format(target))
+
         analytics_path = "{rootmountpoint}/etc/lliurex-analytics/".format(rootmountpoint=target)
         os.system("mkdir -p {ap}".format(ap=analytics_path))
-        if 'statistics' in actions:
-            with open(os.path.join(analytics_path,"status"),"w") as fd:
-                fd.write('yes\n')
-        else:
-            with open(os.path.join(analytics_path,"status"),"w") as fd:
-                fd.write('no\n')
+        with open(os.path.join(analytics_path,"status"),"w") as fd:
+            fd.write('no\n')
 
         return plugin.InstallPlugin.install(self, target, progress, *args, **kwargs)
