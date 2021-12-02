@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.3.7.1) bionic; urgency=medium
+
+  * typo
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 02 Dec 2021 14:41:23 +0100
+
 ubiquity-system-addons (0.3.7) bionic; urgency=medium
 
   * Remove statistics from installer
