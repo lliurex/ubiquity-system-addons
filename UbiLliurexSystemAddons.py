@@ -24,7 +24,7 @@ class PageKde(plugin.PluginUI):
         from PyQt5.QtGui import QPixmap, QIcon, QFont
         from PyQt5.QtWidgets import QWidget, QFrame, QVBoxLayout, QScrollArea, QGridLayout, QHBoxLayout, QLabel, QSizePolicy, QRadioButton
         from PyQt5.QtCore import Qt
-        self.configuration = {'anydesk':False,'inventory':False}
+        self.configuration = {'anydesksai':False,'inventory':False}
         self.controller = controller
         self.main_widget = QFrame()
         self.translations = {"anydeskname" : "Anydesk for SAI","anydeskdescription" : "AnyDesk to SAI from Comunidad Valenciana", "inventoryname": "Inventory Service", "inventorydescription": "Service to collect hardware information"}
