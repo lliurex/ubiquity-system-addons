@@ -4,7 +4,7 @@ from ubiquity import misc, plugin, validation
 import os
 import inspect
 import gettext
-
+import subprocess as s
 
 NAME = 'lliurexSystemAddons'
 AFTER = 'lliurexExtrapackages'
@@ -225,6 +225,12 @@ class Page(plugin.Plugin):
                 for line in lines:
                     if line != 'anydesksai\n':
                         fd.write(line)
+        result =  s.Popen(["lspci","-n"],stdout=s.PIPE)
+        for x in result.stdout.readlines():
+            if "10ec:c822" in x:
+                with open('/var/lib/ubiquity/lliurex-extra-packages','a') as fd:
+                    fd.write('rtl88x2ce\n')
+                    fd.write('rtkbtusb-8822cu\n')
 
 
 
