@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.3.2) bionic; urgency=medium
+
+  * Add support to dynabook
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 07 Dec 2021 15:49:36 +0100
+
 ubiquity-system-addons (0.3.7.1) bionic; urgency=medium
 
   * typo
