@@ -227,7 +227,7 @@ class Page(plugin.Plugin):
                         fd.write(line)
         result =  s.Popen(["lspci","-n"],stdout=s.PIPE)
         for x in result.stdout.readlines():
-            if "10ec:c822" in x:
+            if str("10ec:c822") in str(x):
                 with open('/var/lib/ubiquity/lliurex-extra-packages','a') as fd:
                     fd.write('rtl88x2ce\n')
                     fd.write('rtkbtusb-8822cu\n')
