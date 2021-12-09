@@ -1,3 +1,9 @@
+ubiquity-system-addons (0.3.8.1) bionic; urgency=medium
+
+  * Convert binary to str
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 09 Dec 2021 13:47:37 +0100
+
 ubiquity-system-addons (0.3.8) bionic; urgency=medium
 
   * Add support to dynabook
